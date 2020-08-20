@@ -1,0 +1,281 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : localhost:8889
+-- Généré le :  jeu. 20 août 2020 à 08:39
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.3.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Base de données :  `workshop_barbershop`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `coiffeur`
+--
+
+CREATE TABLE `coiffeur` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `snap` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `insta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `coiffeur`
+--
+
+INSERT INTO `coiffeur` (`id`, `username`, `file`, `snap`, `facebook`, `insta`) VALUES
+(1, 'IHEB de la salle', '5b9e04ed981f2cffa2fb25bd28ef805a.jpeg', 'a7dc466cf209504e72525b2e06dbf5d7.jpeg', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `doctrine_migration_versions`
+--
+
+CREATE TABLE `doctrine_migration_versions` (
+  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `executed_at` datetime DEFAULT NULL,
+  `execution_time` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `doctrine_migration_versions`
+--
+
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+('DoctrineMigrations\\Version20200726065516', '2020-07-26 06:55:24', 142),
+('DoctrineMigrations\\Version20200726161021', '2020-07-26 16:10:27', 91),
+('DoctrineMigrations\\Version20200726163140', '2020-07-26 16:31:45', 68),
+('DoctrineMigrations\\Version20200728185600', '2020-07-28 18:56:05', 183),
+('DoctrineMigrations\\Version20200730114422', '2020-07-30 11:44:27', 175),
+('DoctrineMigrations\\Version20200730114631', '2020-07-30 11:49:45', 112),
+('DoctrineMigrations\\Version20200730114713', '2020-07-30 11:49:46', 16),
+('DoctrineMigrations\\Version20200730114941', '2020-07-30 11:49:46', 15),
+('DoctrineMigrations\\Version20200730115541', '2020-07-30 11:55:46', 127),
+('DoctrineMigrations\\Version20200801180322', '2020-08-01 18:05:30', 87),
+('DoctrineMigrations\\Version20200801192546', '2020-08-01 19:25:55', 111),
+('DoctrineMigrations\\Version20200801192622', '2020-08-01 19:26:55', 91),
+('DoctrineMigrations\\Version20200801193411', '2020-08-01 19:34:16', 94),
+('DoctrineMigrations\\Version20200801200710', '2020-08-01 20:07:15', 105),
+('DoctrineMigrations\\Version20200801201225', '2020-08-01 20:12:31', 81),
+('DoctrineMigrations\\Version20200801201332', '2020-08-01 20:13:40', 98),
+('DoctrineMigrations\\Version20200801201542', '2020-08-01 20:15:49', 131),
+('DoctrineMigrations\\Version20200808071308', '2020-08-08 07:13:12', 102),
+('DoctrineMigrations\\Version20200808072720', '2020-08-08 07:27:25', 108),
+('DoctrineMigrations\\Version20200808080001', '2020-08-08 08:00:05', 198),
+('DoctrineMigrations\\Version20200808090443', '2020-08-08 09:04:48', 92),
+('DoctrineMigrations\\Version20200809141859', '2020-08-09 14:19:06', 249),
+('DoctrineMigrations\\Version20200809142434', '2020-08-09 14:24:39', 166),
+('DoctrineMigrations\\Version20200812050630', '2020-08-12 05:06:36', 149);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `indisponibilite`
+--
+
+CREATE TABLE `indisponibilite` (
+  `id` int(11) NOT NULL,
+  `coiffeur_id` int(11) DEFAULT NULL,
+  `date_indispo` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `indisponibilite`
+--
+
+INSERT INTO `indisponibilite` (`id`, `coiffeur_id`, `date_indispo`) VALUES
+(2, 1, '2020-08-12');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `presentation`
+--
+
+CREATE TABLE `presentation` (
+  `id` int(11) NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` tinyint(1) NOT NULL,
+  `format` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `presentation`
+--
+
+INSERT INTO `presentation` (`id`, `file`, `type`, `format`) VALUES
+(1, 'c8d13d030f37b20d4219638a3f2f474e.jpeg', 1, 0),
+(2, '4f9824f69a3202b830ff20f7078650e2.png', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `id` int(11) NOT NULL,
+  `date_rdv` datetime NOT NULL,
+  `coiffeur_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `date_rdv`, `coiffeur_id`, `user_id`) VALUES
+(1, '2020-08-14 10:00:00', 1, 17),
+(2, '2020-08-13 15:00:00', 1, 21),
+(3, '2020-08-14 11:00:00', 1, 17),
+(4, '2020-08-19 10:00:00', 1, 17),
+(9, '2020-08-20 15:00:00', 1, 28),
+(11, '2020-08-19 12:30:00', 1, 17),
+(12, '2020-08-19 14:00:00', 1, 30),
+(13, '2020-08-25 12:00:00', 1, 17);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` json NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_created` datetime NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `number_change` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `date_created`, `token`, `name`, `first_name`, `number`, `number_change`) VALUES
+(17, 'adeldoudou1996@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$QVRHXvo6t/4mY41FJzQzIeKl9jLCol8Dz20yyofXOjGDK6bfEoCTO', '2020-08-01 20:13:59', '14a11d7bb682b6dc8b1bd5b80784a8', 'ok', 'okkookokokokookokk', '611151380', 2),
+(18, 'adeldoudou@gmail.com', '[]', '$argon2id$v=19$m=65536,t=4,p=1$jdJq4EJY6MRc4mETWqEd9g$gfVs4W5UeGLc4UyuslUJvdF2nplvQdRRiJaYL2boWwY', '2020-08-01 20:16:15', '11615533', '', '', '0', NULL),
+(20, 'adeldoudou6@gmail.com', '[\"ROLE_ADMIN\", \"ROLE_USER\"]', '', '2020-08-08 08:34:28', '1b0fc14aed00ca65568aa5ae07e9b9', 'Doudou', 'Adel', '611151380', NULL),
+(21, 'dzenana.jusic@gmail.com', '[]', '$2y$13$fTQPTaqO24F0zJiCQ7XeeeYj0xIvD0x/c41NZ7bov1LD0T26mVgZa', '2020-08-09 20:12:37', '7df645293681cd767941724d83b324', 'Jusic', 'Dzenana', '659909479', 0),
+(22, 'adeldgmail.com', '[]', '$2y$13$aBUJ2MQ3bo8kCPM7yt45UOH6O9.QMu7K2fnHUMlj/1JU9E3nRoikq', '2020-08-12 05:57:15', 'a6d988fd3144bb44d03127917188ec', 'DoDO', 'Ad', '611151380', 0),
+(23, 'adeldou@gmail.com', '[]', '$2y$13$lCbrbSzfVq1HrV9m2y73eesQs2y1ewAEsln0ikFJC7tqiQWOfvCiS', '2020-08-12 05:59:58', '3163886ade9f05b43a25d155da8efb', 'ad', 'ad', '988', 0),
+(24, 'email@hoek.com', '[]', '$2y$13$s9mzQN/CKIOWm8w5GPhvn.w1ZIKP9zasdZK87wWfwQR.1iF9BhvHO', '2020-08-18 10:32:19', '228029c02dd981fb7a3d07a4ad202d', 'Nom', 'Prenom', '611151380', 0),
+(25, 'f906f2067a', '[]', '$2y$13$2PLV7JFobUOxXa2b1PH46eLWRNcDziq4GU9N5Xzm3M0VipExXDlp6', '2020-08-18 11:09:26', '797a381d704352e018d37c35f487e1', 'Prenom', 'Nom', '6235269694', 0),
+(26, '9753b73994', '[]', '$2y$13$ZNFmE41WRMKc7mkaJOIhY.n1rfg6/oV2RL5CKUQGlZPpmYpfUE0dK', '2020-08-18 11:09:52', 'dda7c18e89c8c7da802d1f88f9544d', 'Nom', 'Prenom', '4039989390', 0),
+(27, 'fe562ad160', '[]', '$2y$13$H3041uxDRUWW9JV6Vga5Q.seCGGFY3PsBoms8GKIarEpCU/OtSAcu', '2020-08-18 11:10:58', '9f47abcd6b4b806437c522c4dfdd86', 'Doudou', 'Adel', '3748209531', 0),
+(28, '7bb6757ee3', '[]', '$2y$13$8VsQKeAcLZatnzVihgjD9uIZyKS/Mbh7zaFsKv7WYTqwPs.ner/yO', '2020-08-18 11:11:38', 'a1cd6f9d893691a490c5173339b238', 'Mee', 'too', '6181552068', 0),
+(29, '5f3f27fdf8', '[]', '$2y$13$D32P4Q50H5hosz8rU3bGkOI9m5yylbJ9QikZFwII7h7/7719qadxG', '2020-08-18 11:12:36', '6fc0d6cf9ebd6b0e56ed3b893c28ff', 'Doudou', 'Adel', '0', 0),
+(30, '94e800f8d9', '[]', '$2y$13$u3TkOstaHli/iwgqzYUtLur5L5e8qFyN4KA6JDmTo3eujbOfF2ucy', '2020-08-18 15:49:32', '737951d36514968470f7031fb19ab5', 'mehdi', 'gassem', '0', 0),
+(32, 'email', '[]', 'password', '2020-08-10 00:00:00', NULL, 'name', 'firtName', 'number', NULL),
+(33, 'drdrt', '[]', 'drdrt', '2020-08-10 00:00:00', NULL, 'drtdrt', '', 'eses', NULL);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `coiffeur`
+--
+ALTER TABLE `coiffeur`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `doctrine_migration_versions`
+--
+ALTER TABLE `doctrine_migration_versions`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- Index pour la table `indisponibilite`
+--
+ALTER TABLE `indisponibilite`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_8717036FBD427C57` (`coiffeur_id`);
+
+--
+-- Index pour la table `presentation`
+--
+ALTER TABLE `presentation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_42C84955BD427C57` (`coiffeur_id`),
+  ADD KEY `IDX_42C84955A76ED395` (`user_id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `coiffeur`
+--
+ALTER TABLE `coiffeur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `indisponibilite`
+--
+ALTER TABLE `indisponibilite`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `presentation`
+--
+ALTER TABLE `presentation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `reservation`
+--
+ALTER TABLE `reservation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `indisponibilite`
+--
+ALTER TABLE `indisponibilite`
+  ADD CONSTRAINT `FK_8717036FBD427C57` FOREIGN KEY (`coiffeur_id`) REFERENCES `coiffeur` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `FK_42C84955A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_42C84955BD427C57` FOREIGN KEY (`coiffeur_id`) REFERENCES `coiffeur` (`id`) ON DELETE CASCADE;
